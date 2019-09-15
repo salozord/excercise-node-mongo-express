@@ -20,4 +20,5 @@ The API is defined in the following routes:
 1. Install the dependencies with ```npm install``` or individually with ```npm install express```, ```npm install mongodb``` & ```npm install body-parser```
 2. Run the program with ```npm start``` or ```node index.js``` from the root directory.
 
+Notice that the API works with the database from the local machine where it is ran, the name of the database is ```countries``` and the name of the collection which has to have the documents based on ```countriesall.json``` is ```countriesall```.
 To run the postman collections, import the collection ```Tests Exercise Node-Mongo-Express.postman_collection.json``` into postman and then run it.

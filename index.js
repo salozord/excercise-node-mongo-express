@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 
 const PORT = 8080;
-let url = 'mongodb+srv://usuario:usuario@cluster-web-vilrj.mongodb.net/test?retryWrites=true&w=majority';
+let url = 'mongodb://localhost:27017';
 let app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
