@@ -9,7 +9,7 @@ The purpose of this exercise is to practice with the usage of Node.js and Expres
 
 ### API points
 The API is defined in the following routes:
-* \[GET\] --> / --> Root access to de API with wellcoming message.
+* \[GET\] --> / --> Root access to de API with welcoming message.
 * \[GET\] --> /countries --> Get all the countries in the database.
 * \[GET\] --> /countries/:id --> Get the country with the specified id  from the database (Where :id is the name of the country).
 * \[POST\] --> /countries --> Creates a new country in the database based on the json sent through the request's body.
