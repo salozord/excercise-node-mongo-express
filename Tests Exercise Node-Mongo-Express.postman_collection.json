@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "1d2e2763-a6e4-4398-8f6c-2b65f990813d",
+		"name": "Tests Exercise Node-Mongo-Express",
+		"description": "Functional testing for the API Rest made with Node.js-Express-MongoDB.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Countries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a32a6ea-e3c1-4428-869e-d6eb396659b6",
+						"exec": [
+							"tests[\"no genera error en el Get All\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries"
+					]
+				},
+				"description": "Retrieves all the countries in the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91597e84-c049-4bf1-93f1-a79ae335f5d4",
+						"exec": [
+							"let resp = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"id\", resp.country);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(resp.country);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"country\": \"Genovia\",\r\n\t\"population\": 9923,\r\n\t\"continent\": \"Europa\",\r\n\t\"lifeExpectancy\": 43.8,\r\n\t\"purchasingPower\": 974.58\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries"
+					]
+				},
+				"description": "Creates a new country in the database based on the JSON in the request's body."
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7efede10-f38b-40d6-940d-368c2c223037",
+						"exec": [
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countries/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries",
+						"{{id}}"
+					]
+				},
+				"description": "Retrieves one country with the specified id in the url."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "810179ef-7869-4005-bf17-dc3e102dcbce",
+						"exec": [
+							"tests[\"no genera error en el Update\"] = responseCode.code === 200;",
+							"tests[\"no genera error al actualizar\"] = responseBody === \"Updated 1 element(s) successfully !\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"population\":3600200,\r\n\t\"continent\":\"Europa\",\r\n\t\"lifeExpectancy\":70.8,\r\n\t\"purchasingPower\":5937.58\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/countries/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries",
+						"{{id}}"
+					]
+				},
+				"description": "Updates one country with the specified id in the url."
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Country Check Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cba82175-5132-4424-bb49-af9640d82c28",
+						"exec": [
+							"tests[\"no genera error en el Get después\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countries/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries",
+						"{{id}}"
+					]
+				},
+				"description": "Retrieves one country with the specified id in the url."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Country",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d9720ee-39f3-4d29-8e1c-485c8b57e712",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 200;",
+							"tests[\"no genera error al eliminar\"] = responseBody === \"Deleted 1 element(s) successfully !\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countries/{{id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries",
+						"{{id}}"
+					]
+				},
+				"description": "Deletes the country with the speficied id from the database."
+			},
+			"response": []
+		}
+	]
+}
